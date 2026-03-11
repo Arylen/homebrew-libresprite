@@ -16,7 +16,7 @@ class Libresprite < Formula
   depends_on "jpeg-turbo"
   depends_on "libarchive"
   depends_on "libpng"
-  depends_on "libwebp"
+  depends_on "webp"
   depends_on "pixman"
   depends_on "sdl2"
   depends_on "sdl2_image"
