@@ -3,7 +3,7 @@ class Libresprite < Formula
   homepage "https://libresprite.github.io/"
   url "https://github.com/LibreSprite/LibreSprite.git",
       tag:      "v1.1",
-      revision: "dce8cfe"
+      revision: "dce8cfe7b6d366fe0ae8f3b35740c0f9e2e4d9e0"
   license "GPL-2.0-only"
 
   depends_on "cmake" => :build
