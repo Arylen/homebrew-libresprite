@@ -1,5 +1,7 @@
 # LibreSprite Homebrew Formula
 
+*Note: This is currently a WIP repo and will probably be broken.* 
+
 Just a quick formula for pulling, building, and installing LibreSprite on MacOS, since the releases are broken for Mac.
 
 ## Installation
