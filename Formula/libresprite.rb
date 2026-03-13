@@ -27,8 +27,9 @@ class Libresprite < Formula
     depends_on xcode: :build
   end
 
+  patch :DATA
+
   def install
-    # Ensure submodules are initialised (Homebrew clones with --depth=1)
     system "git", "submodule", "update", "--init", "--recursive"
 
     mkdir "build" do
@@ -55,7 +56,6 @@ class Libresprite < Formula
       system "cmake", "..", *args
       system "ninja", "libresprite"
 
-      # Install the binary and data
       bin.install "bin/libresprite"
       prefix.install Dir["bin/data"] if File.directory?("bin/data")
     end
@@ -73,7 +73,25 @@ class Libresprite < Formula
   end
 
   test do
-    # LibreSprite needs a display; just verify the binary exists and runs
     assert_match "LibreSprite", shell_output("#{bin}/libresprite --version 2>&1", 1)
   end
 end
+__END__
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -153,14 +153,6 @@ if(NOT GEN_ONLY)
+ 
+   # libArchive
+   if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+-    # Homebrew ships libarchive keg only, include dirs have to be set manually
+-    execute_process(
+-        COMMAND brew --prefix libarchive
+-        OUTPUT_VARIABLE LIBARCHIVE_PREFIX
+-        OUTPUT_STRIP_TRAILING_WHITESPACE
+-        COMMAND_ERROR_IS_FATAL ANY
+-    )
+-    set(LibArchive_INCLUDE_DIR "${LIBARCHIVE_PREFIX}/include")
+   endif()
+   find_package(LibArchive REQUIRED)
+   include_directories(${LibArchive_INCLUDE_DIR})
