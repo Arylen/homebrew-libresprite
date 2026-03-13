@@ -43,6 +43,7 @@ class Libresprite < Formula
         -DUSE_SHARED_LIBPNG=ON
         -DUSE_SHARED_LIBWEBP=ON
         -DUSE_SHARED_LIBARCHIVE=ON
+        -DCMAKE_POLICY_VERSION_MINIMUM=3.5
         -DCMAKE_PREFIX_PATH=#{Formula["libarchive"].opt_prefix}
       ]
 
